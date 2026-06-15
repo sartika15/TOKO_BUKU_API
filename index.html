@@ -1,125 +1,391 @@
-<div class="card">
-<h2>Kelompok</h2>
-<p>1. Maya Sartika (24059304653)</p>
-<p>2. Salsia Rahma Fitriya (24059304689)</p>
-<p>3. Chairati Fitria (24059304617)</p>
-</div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi RESTful API Toko Buku</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary: #4f46e5;
+            --primary-light: #e0e7ff;
+            --success: #10b981;
+            --info: #0ea5e9;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #e2e8f0;
+        }
 
-<div class="card">
-<h2>Cara Menjalankan Project</h2>
-<ol>
-<li>Clone repository dari GitHub</li>
-<li>Install dependencies dengan <b>npm install</b></li>
-<li>Jalankan server dengan <b>node server.js</b></li>
-<li>Server akan berjalan di <b>localhost:3000</b></li>
-</ol>
-</div>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<div class="card">
-<h2>Buat Database</h2>
-<p>Project ini menggunakan data dummy JSON (tanpa database SQL).</p>
-<p>Data disimpan pada folder <b>src/data</b> dalam bentuk file JavaScript/JSON.</p>
-</div>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
 
-<div class="card">
-<h2>Jalankan Server</h2>
-<pre>
-node server.js
-</pre>
-<p>Pastikan port 3000 tidak digunakan aplikasi lain.</p>
-</div>
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-<div class="card">
-<h2>Catatan Penting Penggunaan :id</h2>
-<p>
-Parameter <b>:id</b> digunakan untuk mengambil data spesifik berdasarkan ID.
-</p>
-<p>Contoh:</p>
-<pre>
-GET /api/v1/buku/1
-PUT /api/v1/buku/2
-DELETE /api/v1/buku/3
-</pre>
-</div>
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-<div class="card">
-<h2>Alur Request (Lifecycle)</h2>
-<ol>
-<li>Client mengirim request (Postman / browser)</li>
-<li>Request masuk ke router</li>
-<li>Router meneruskan ke controller</li>
-<li>Controller memproses data</li>
-<li>Response dikirim kembali ke client</li>
-</ol>
-</div>
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
 
-<div class="card">
-<h2>Daftar Endpoint</h2>
-<p>Endpoint tersedia untuk Buku dan Pembelian (CRUD lengkap).</p>
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
 
-<div class="endpoint">GET /api/v1/buku</div>
-<div class="endpoint">GET /api/v1/buku/:id</div>
-<div class="endpoint">POST /api/v1/buku</div>
-<div class="endpoint">PUT /api/v1/buku/:id</div>
-<div class="endpoint">DELETE /api/v1/buku/:id</div>
+        .tech-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
 
-<div class="endpoint">GET /api/v1/pembelian</div>
-<div class="endpoint">GET /api/v1/pembelian/:id</div>
-<div class="endpoint">POST /api/v1/pembelian</div>
-<div class="endpoint">PUT /api/v1/pembelian/:id</div>
-<div class="endpoint">DELETE /api/v1/pembelian/:id</div>
-</div>
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-<div class="card">
-<h2>Panduan CRUD & API Key (Postman)</h2>
-<ul>
-<li>Gunakan Postman untuk testing API</li>
-<li>Method GET untuk membaca data</li>
-<li>Method POST untuk menambah data</li>
-<li>Method PUT untuk mengubah data</li>
-<li>Method DELETE untuk menghapus data</li>
-<li>Jika ada API Key, tambahkan di Headers</li>
-</ul>
-</div>
+        .badge.node { background-color: #6da55f; }
+        .badge.express { background-color: #353535; }
+        .badge.json { background-color: #5e5e5e; }
+        .badge.postman { background-color: #ff6c37; }
 
-<div class="card">
-<h2>Dokumentasi API & Skenario Respon</h2>
-<p>API akan mengembalikan response dalam format JSON.</p>
-<pre>
-{
+        /* Card Style */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+        }
+
+        /* Table Style */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .method {
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            text-align: center;
+            display: inline-block;
+            min-width: 65px;
+        }
+
+        .method.get { background-color: #d1fae5; color: var(--success); }
+        .method.post { background-color: #e0f2fe; color: var(--info); }
+        .method.put { background-color: #fef3c7; color: var(--warning); }
+        .method.delete { background-color: #fee2e2; color: var(--danger); }
+
+        /* Code Block */
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        ol, ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .alert-box {
+            background-color: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .status-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .status-item {
+            background: var(--bg-color);
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 4px solid var(--text-muted);
+        }
+
+        .status-item.s2xx { border-left-color: var(--success); }
+        .status-item.s4xx { border-left-color: var(--warning); }
+        .status-item.s5xx { border-left-color: var(--danger); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1><i class="fa-solid fa-book-bookmark"></i> RESTful API Toko Buku</h1>
+            <p>Dokumentasi Resmi Pengembangan Backend &amp; Lifecycle System</p>
+            <div class="tech-badges">
+                <span class="badge node"><i class="fa-brands fa-node-js"></i> Node.js</span>
+                <span class="badge express"><i class="fa-solid fa-server"></i> Express.js</span>
+                <span class="badge json"><i class="fa-solid fa-code"></i> JSON Data</span>
+                <span class="badge postman"><i class="fa-solid fa-rocket"></i> Postman</span>
+            </div>
+        </header>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-users"></i> Anggota Kelompok</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 10%">No</th>
+                        <th style="width: 50%">Nama Anggota</th>
+                        <th style="width: 40%">NIM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>Maya Sartika</strong></td>
+                        <td><code>2405903040053</code></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>Selsilia Rahma Fitria</strong></td>
+                        <td><code>2405903040089</code></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>Chairati Fitria</strong></td>
+                        <td><code>24059030040017</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-terminal"></i> Cara Menjalankan Project</h2>
+            <ol>
+                <li>Clone repository dari GitHub ke komputer lokal Anda.</li>
+                <li>Install semua dependencies yang dibutuhkan: <br><code>npm install</code></li>
+                <li>Jalankan local server Node.js: <br><code>node server.js</code></li>
+            </ol>
+            <div class="alert-box">
+                <i class="fa-solid fa-circle-exclamation"></i> <b>Catatan Penting:</b> Pastikan port <b>3000</b> tidak sedang digunakan oleh aplikasi atau server lain. Aplikasi otomatis berjalan di <code>http://localhost:3000</code>.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-database"></i> Manajemen Database</h2>
+            <p>Project ini menggunakan konsep <strong>Data Dummy JSON</strong> (Tanpa database relational SQL seperti MySQL).</p>
+            <p style="margin-top: 10px;">Seluruh data mentah disimpan dengan aman di dalam direktori <code>src/data</code> dalam format file ekstensi JavaScript / JSON.</p>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-cloud-arrow-down"></i> Daftar Endpoint API (CRUD)</h2>
+            
+            <h3 style="margin: 15px 0 10px 0; font-size: 1.1rem; color: var(--text-muted);">Modul Data Buku</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Endpoint</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="method get">GET</span></td>
+                        <td><code>/api/v1/buku</code></td>
+                        <td>Mengambil semua data buku</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method get">GET</span></td>
+                        <td><code>/api/v1/buku/:id</code></td>
+                        <td>Mengambil spesifik buku via ID</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method post">POST</span></td>
+                        <td><code>/api/v1/buku</code></td>
+                        <td>Menambahkan data buku baru</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method put">PUT</span></td>
+                        <td><code>/api/v1/buku/:id</code></td>
+                        <td>Mengubah data buku berdasarkan ID</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method delete">DELETE</span></td>
+                        <td><code>/api/v1/buku/:id</code></td>
+                        <td>Menghapus data buku via ID</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin: 25px 0 10px 0; font-size: 1.1rem; color: var(--text-muted);">Modul Pembelian</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Endpoint</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="method get">GET</span></td>
+                        <td><code>/api/v1/pembelian</code></td>
+                        <td>Mengambil semua data transaksi</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method get">GET</span></td>
+                        <td><code>/api/v1/pembelian/:id</code></td>
+                        <td>Mengambil detail transaksi via ID</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method post">POST</span></td>
+                        <td><code>/api/v1/pembelian</code></td>
+                        <td>Membuat data transaksi baru</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method put">PUT</span></td>
+                        <td><code>/api/v1/pembelian/:id</code></td>
+                        <td>Mengupdate status/data transaksi</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method delete">DELETE</span></td>
+                        <td><code>/api/v1/pembelian/:id</code></td>
+                        <td>Membatalkan/menghapus transaksi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-diagram-project"></i> Alur Request (Lifecycle)</h2>
+            <ol style="margin-bottom: 15px;">
+                <li>Client mengirim request via aplikasi testing seperti <strong>Postman</strong> atau browser.</li>
+                <li>Request diterima oleh sistem routing utama (<strong>Router</strong>).</li>
+                <li>Router meneruskan request melewati <strong>Middleware</strong> (Validasi &amp; API Key).</li>
+                <li>Request diproses di dalam fungsi bisnis <strong>Controller</strong>.</li>
+                <li>Data hasil olahan dikembalikan lagi ke Client sebagai <strong>Response JSON</strong>.</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-reply"></i> Format Dokumentasi &amp; Skenario Respon</h2>
+            <p>API secara konsisten mengembalikan data keluaran dengan format standard objek JSON berikut:</p>
+            <pre><code>{
   "status": "success",
   "message": "data berhasil diambil",
   "data": []
-}
-</pre>
-</div>
+}</code></pre>
+        </div>
 
-<div class="card">
-<h2>Middleware</h2>
-<p>Middleware digunakan untuk:</p>
-<ul>
-<li>Validasi request</li>
-<li>Logging</li>
-<li>Autentikasi API Key</li>
-</ul>
-</div>
+        <div class="card">
+            <h2><i class="fa-solid fa-list-check"></i> HTTP Status Code</h2>
+            <ul class="status-list">
+                <li class="status-item s2xx"><strong>200 / 201</strong> : Success &amp; Created</li>
+                <li class="status-item s4xx"><strong>400</strong> : Bad Request (Input salah)</li>
+                <li class="status-item s4xx"><strong>401</strong> : Unauthorized (API Key salah)</li>
+                <li class="status-item s4xx"><strong>404</strong> : Not Found (Data kosong)</li>
+                <li class="status-item s5xx"><strong>500</strong> : Internal Server Error</li>
+            </ul>
+        </div>
 
-<div class="card">
-<h2>Status Code HTTP</h2>
-<ul>
-<li>200 = Success</li>
-<li>201 = Created</li>
-<li>400 = Bad Request</li>
-<li>401 = Unauthorized</li>
-<li>404 = Not Found</li>
-<li>500 = Server Error</li>
-</ul>
-</div>
+        <div class="card" style="background-color: var(--primary-light); border-color: var(--primary);">
+            <h2><i class="fa-solid fa-square-poll-horizontal"></i> Kesimpulan &amp; Analisa Akhir</h2>
+            <p style="color: var(--primary); font-weight: 500;">
+                RESTful API Toko Buku ini memudahkan pengelolaan data buku dan transaksi secara efisien menggunakan Node.js dan Express.js.
+                Sistem dirancang bersifat modular, sangat mudah dikembangkan, dan siap diintegrasikan dengan database riil (seperti MySQL/PostgreSQL) di masa mendatang.
+            </p>
+        </div>
 
-<div class="card">
-<h2>Kesimpulan & Analisa Akhir</h2>
-<p>
-RESTful API Toko Buku ini memudahkan pengelolaan data buku dan transaksi secara efisien menggunakan Node.js dan Express.js.
-Sistem ini bersifat modular, mudah dikembangkan, dan dapat diintegrasikan dengan database nyata di masa depan.
-</p>
-</div>
+    </div>
+
+</body>
+</html>
