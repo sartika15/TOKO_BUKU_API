@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toko Buku API</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+    line-height:1.6;
+}
+
+header{
+    background:#1e293b;
+    text-align:center;
+    padding:60px 20px;
+}
+
+header img{
+    width:250px;
+    margin-bottom:20px;
+}
+
+header h1{
+    font-size:40px;
+}
+
+header p{
+    margin-top:10px;
+}
+
+section{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.card{
+    background:#1e293b;
+    padding:25px;
+    margin-bottom:20px;
+    border-radius:10px;
+}
+
+h2{
+    color:#38bdf8;
+    margin-bottom:15px;
+}
+
+.endpoint{
+    background:#334155;
+    padding:10px;
+    margin:8px 0;
+    border-radius:5px;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:#1e293b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png">
+<h1>📚 Toko Buku API</h1>
+<p>RESTful API menggunakan Node.js dan Express.js</p>
+</header>
+
+<section>
+
+<div class="card">
+<h2>Pendahuluan</h2>
+<p>
+Project ini merupakan RESTful API untuk mengelola data buku dan transaksi pembelian buku menggunakan Node.js dan Express.js.
+</p>
+</div>
+
+<div class="card">
+<h2>Judul Project & Studi Kasus</h2>
+<p>
+RESTful API Toko Buku Online dengan dua endpoint utama yaitu Buku dan Pembelian.
+</p>
+</div>
+
+<div class="card">
+<h2>Teknologi yang Digunakan</h2>
+<ul>
+<li>Node.js</li>
+<li>Express.js</li>
+<li>JavaScript</li>
+<li>Thunder Client</li>
+<li>Visual Studio Code</li>
+<li>GitHub</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Cara Menjalankan Project</h2>
+<pre>
+npm install
+node server.js
+</pre>
+</div>
+
+<div class="card">
+<h2>Struktur Project</h2>
+<pre>
+TOKOBUKUAPI
+│
+├── src
+│   ├── controllers
+│   ├── routes
+│   └── data
+│
+├── app.js
+├── server.js
+└── package.json
+</pre>
+</div>
+
+<div class="card">
+<h2>Daftar Endpoint</h2>
+
+<div class="endpoint">GET /api/docs</div>
+
+<div class="endpoint">GET /api/v1/buku</div>
+<div class="endpoint">GET /api/v1/buku/:id</div>
+<div class="endpoint">POST /api/v1/buku</div>
+<div class="endpoint">PUT /api/v1/buku/:id</div>
+<div class="endpoint">DELETE /api/v1/buku/:id</div>
+
+<div class="endpoint">GET /api/v1/pembelian</div>
+<div class="endpoint">GET /api/v1/pembelian/:id</div>
+<div class="endpoint">POST /api/v1/pembelian</div>
+<div class="endpoint">PUT /api/v1/pembelian/:id</div>
+<div class="endpoint">DELETE /api/v1/pembelian/:id</div>
+
+</div>
+
+<div class="card">
+<h2>Informasi Server</h2>
+<p>Host : localhost</p>
+<p>Port : 3000</p>
+<p>Framework : Express.js</p>
+</div>
+
+</section>
+
+<footer>
+© 2026 Maya Sartika - UAS RESTful API
+</footer>
+
+</body>
+</html>
