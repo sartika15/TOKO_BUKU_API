@@ -1,140 +1,61 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toko Buku API</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial, sans-serif;
-    background:#0f172a;
-    color:white;
-    line-height:1.6;
-}
-
-header{
-    background:#1e293b;
-    text-align:center;
-    padding:60px 20px;
-}
-
-header img{
-    width:250px;
-    margin-bottom:20px;
-}
-
-header h1{
-    font-size:40px;
-}
-
-header p{
-    margin-top:10px;
-}
-
-section{
-    max-width:1100px;
-    margin:auto;
-    padding:40px 20px;
-}
-
-.card{
-    background:#1e293b;
-    padding:25px;
-    margin-bottom:20px;
-    border-radius:10px;
-}
-
-h2{
-    color:#38bdf8;
-    margin-bottom:15px;
-}
-
-.endpoint{
-    background:#334155;
-    padding:10px;
-    margin:8px 0;
-    border-radius:5px;
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    background:#1e293b;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-<img src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png">
-<h1>📚 Toko Buku API</h1>
-<p>RESTful API menggunakan Node.js dan Express.js</p>
-</header>
-
-<section>
-
 <div class="card">
-<h2>Pendahuluan</h2>
-<p>
-Project ini merupakan RESTful API untuk mengelola data buku dan transaksi pembelian buku menggunakan Node.js dan Express.js.
-</p>
-</div>
-
-<div class="card">
-<h2>Judul Project & Studi Kasus</h2>
-<p>
-RESTful API Toko Buku Online dengan dua endpoint utama yaitu Buku dan Pembelian.
-</p>
-</div>
-
-<div class="card">
-<h2>Teknologi yang Digunakan</h2>
-<ul>
-<li>Node.js</li>
-<li>Express.js</li>
-<li>JavaScript</li>
-<li>Thunder Client</li>
-<li>Visual Studio Code</li>
-<li>GitHub</li>
-</ul>
+<h2>Kelompok</h2>
+<p>1. Maya Sartika (24059304653)</p>
+<p>2. Salsia Rahma Fitriya (24059304689)</p>
+<p>3. Chairati Fitria (24059304617)</p>
 </div>
 
 <div class="card">
 <h2>Cara Menjalankan Project</h2>
+<ol>
+<li>Clone repository dari GitHub</li>
+<li>Install dependencies dengan <b>npm install</b></li>
+<li>Jalankan server dengan <b>node server.js</b></li>
+<li>Server akan berjalan di <b>localhost:3000</b></li>
+</ol>
+</div>
+
+<div class="card">
+<h2>Buat Database</h2>
+<p>Project ini menggunakan data dummy JSON (tanpa database SQL).</p>
+<p>Data disimpan pada folder <b>src/data</b> dalam bentuk file JavaScript/JSON.</p>
+</div>
+
+<div class="card">
+<h2>Jalankan Server</h2>
 <pre>
-npm install
 node server.js
+</pre>
+<p>Pastikan port 3000 tidak digunakan aplikasi lain.</p>
+</div>
+
+<div class="card">
+<h2>Catatan Penting Penggunaan :id</h2>
+<p>
+Parameter <b>:id</b> digunakan untuk mengambil data spesifik berdasarkan ID.
+</p>
+<p>Contoh:</p>
+<pre>
+GET /api/v1/buku/1
+PUT /api/v1/buku/2
+DELETE /api/v1/buku/3
 </pre>
 </div>
 
 <div class="card">
-<h2>Struktur Project</h2>
-<pre>
-TOKOBUKUAPI
-│
-├── src
-│   ├── controllers
-│   ├── routes
-│   └── data
-│
-├── app.js
-├── server.js
-└── package.json
-</pre>
+<h2>Alur Request (Lifecycle)</h2>
+<ol>
+<li>Client mengirim request (Postman / browser)</li>
+<li>Request masuk ke router</li>
+<li>Router meneruskan ke controller</li>
+<li>Controller memproses data</li>
+<li>Response dikirim kembali ke client</li>
+</ol>
 </div>
 
 <div class="card">
 <h2>Daftar Endpoint</h2>
-
-<div class="endpoint">GET /api/docs</div>
+<p>Endpoint tersedia untuk Buku dan Pembelian (CRUD lengkap).</p>
 
 <div class="endpoint">GET /api/v1/buku</div>
 <div class="endpoint">GET /api/v1/buku/:id</div>
@@ -147,21 +68,58 @@ TOKOBUKUAPI
 <div class="endpoint">POST /api/v1/pembelian</div>
 <div class="endpoint">PUT /api/v1/pembelian/:id</div>
 <div class="endpoint">DELETE /api/v1/pembelian/:id</div>
-
 </div>
 
 <div class="card">
-<h2>Informasi Server</h2>
-<p>Host : localhost</p>
-<p>Port : 3000</p>
-<p>Framework : Express.js</p>
+<h2>Panduan CRUD & API Key (Postman)</h2>
+<ul>
+<li>Gunakan Postman untuk testing API</li>
+<li>Method GET untuk membaca data</li>
+<li>Method POST untuk menambah data</li>
+<li>Method PUT untuk mengubah data</li>
+<li>Method DELETE untuk menghapus data</li>
+<li>Jika ada API Key, tambahkan di Headers</li>
+</ul>
 </div>
 
-</section>
+<div class="card">
+<h2>Dokumentasi API & Skenario Respon</h2>
+<p>API akan mengembalikan response dalam format JSON.</p>
+<pre>
+{
+  "status": "success",
+  "message": "data berhasil diambil",
+  "data": []
+}
+</pre>
+</div>
 
-<footer>
-© 2026 Maya Sartika - UAS RESTful API
-</footer>
+<div class="card">
+<h2>Middleware</h2>
+<p>Middleware digunakan untuk:</p>
+<ul>
+<li>Validasi request</li>
+<li>Logging</li>
+<li>Autentikasi API Key</li>
+</ul>
+</div>
 
-</body>
-</html>
+<div class="card">
+<h2>Status Code HTTP</h2>
+<ul>
+<li>200 = Success</li>
+<li>201 = Created</li>
+<li>400 = Bad Request</li>
+<li>401 = Unauthorized</li>
+<li>404 = Not Found</li>
+<li>500 = Server Error</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Kesimpulan & Analisa Akhir</h2>
+<p>
+RESTful API Toko Buku ini memudahkan pengelolaan data buku dan transaksi secara efisien menggunakan Node.js dan Express.js.
+Sistem ini bersifat modular, mudah dikembangkan, dan dapat diintegrasikan dengan database nyata di masa depan.
+</p>
+</div>
